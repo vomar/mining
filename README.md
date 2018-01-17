@@ -1,5 +1,7 @@
 # Mining
 
+Program do poprawnego działania musi znajdować się w folderze z ccminerem lub innym programem tego typu.
+
 Program przy pierwszym uruchomieniu poinformuje cie że musisz skonfigurować aplikacje kopiące i gry.
 
 Zrobisz to naciskając prawym przyciskiem w menu głównym programu.
