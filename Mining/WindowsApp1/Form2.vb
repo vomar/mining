@@ -28,7 +28,7 @@ Public Class Form2
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim ser As New XmlSerializer(GetType(User))
         Dim filepath As String
-        filepath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, "userrecord.txt")
+        filepath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, "usergames.txt")
         Dim fs As New FileStream(filepath, FileMode.Create)
         ser.Serialize(fs, CreateRecord())
         fs.Close()
@@ -47,7 +47,7 @@ Public Class Form2
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim ser As New XmlSerializer(GetType(User))
         Dim filepath As String
-        filepath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, "userrecord.txt")
+        filepath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, "usergames.txt")
         Dim fs As New FileStream(filepath, FileMode.OpenOrCreate)
         Dim rec As User
         rec = DirectCast(ser.Deserialize(fs), User)
@@ -56,7 +56,16 @@ Public Class Form2
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Button2_Click(sender, e)
+        Dim filepath As String
+        filepath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, "usergames.txt")
+        If File.Exists(filepath) Then
+            If File.ReadAllText(filepath).Length <> 0 Then
+                Button2_Click(sender, e)
+            End If
+        Else
+            MsgBox("Wpisz jakieś gry w które grasz.")
+            MsgBox("Zrobisz to klikając prawym w głównym oknie i przechodząc do Konfiguracji Gier.")
+        End If
     End Sub
 
     Private Sub frmNotary_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing

@@ -60,11 +60,13 @@ Public Class Form3
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim filepath As String
         filepath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, "usercards.txt")
-        If File.ReadAllText(filepath).Length = 0 Then
-            MsgBox("Wybierz ścieżki do aplikacji kopiącycych kryptowalutę.")
-            MsgBox("Zrobisz to klikając prawym i przechodząc do Konfiguracji Kart")
+        If File.Exists(filepath) Then
+            If File.ReadAllText(filepath).Length <> 0 Then
+                Button4_Click(sender, e)
+            End If
         Else
-            Button4_Click(sender, e)
+            MsgBox("Wybierz ścieżki do aplikacji kopiącycych kryptowalutę.")
+            MsgBox("Zrobisz to klikając prawym w głównym oknie i przechodząc do Konfiguracji Kart.")
         End If
     End Sub
 

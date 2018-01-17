@@ -41,8 +41,8 @@ Public Class Mining
         If ProgressBar1.Value = ProgressBar1.Maximum Then
             ProgressBar1.Value = ProgressBar1.Minimum
         End If
- 
-        If File.ReadAllText(filepath).Length = 0 Or sciezka1 = "" Or sciezka2 = "" Then
+
+        If File.Exists(filepath) = 0 Or sciezka1 = "" Or sciezka2 = "" Then
             TextBox1.Text = "Wybierz ścieżki do aplikacji kopiącycych kryptowalutę."
             TextBox1.Update()
             ProgressBar1.PerformStep()
